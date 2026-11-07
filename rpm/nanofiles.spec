@@ -6,7 +6,7 @@ Name:       nanofiles
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    nanofiles
 Version:    1.4.4
-Release:    1
+Release:    1.noroot
 Group:      Qt/Qt
 License:    GPLv3
 URL:        http://verdanditeam.com/
@@ -39,9 +39,8 @@ desktop-file-install --delete-original       \
    %{buildroot}%{_datadir}/applications/*.desktop
 
 %files
-%defattr(4755,root,root,4755)
-%{_bindir}/%{name}
 %defattr(-,root,root,-)
+%{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png

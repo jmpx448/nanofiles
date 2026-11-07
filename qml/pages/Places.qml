@@ -40,12 +40,6 @@ Page {
                 onClicked: settings.places = defaultPlaces
             }
 
-            MenuItem {
-                text: engine.rootMode ? qsTr("Restart in user mode") : qsTr("Restart in root mode")
-                onClicked: {
-                    engine.rootMode = !engine.rootMode
-            }
-          }
         }
 
         ConfigurationGroup {

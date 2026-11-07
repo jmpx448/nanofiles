@@ -6,7 +6,7 @@ FileEngine::FileEngine(QObject *parent) :
     QObject(parent)
 {
     _currentFileIndex = -1;
-    setRootMode(QFile::exists("/tmp/nanofiles_root"));
+    _rootMode = false; // root mode removed (no setuid binary)
 
 
     fileList = new FileList();
@@ -214,25 +214,8 @@ bool FileEngine::getRootMode()
 
 void FileEngine::setRootMode(bool rootMode)
 {
-    if (rootMode) {
-        QFile file("/tmp/nanofiles_root");
-        file.open(QIODevice::WriteOnly);
-        file.close();
-
-        if (setuid(0)) {
-            perror("setuid");
-            exit(1);
-        }
-    } else {
-        QFile::remove("/tmp/nanofiles_root");
-        if (setuid(100000)) {
-            perror("setuid");
-            exit(1);
-        }
-    }
-
-    _rootMode = rootMode;
-    emit rootModeChanged(rootMode);
+    // Root mode disabled: binary is not setuid, never escalate privileges.
+    Q_UNUSED(rootMode)
 }
 
 /*
