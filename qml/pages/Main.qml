@@ -191,6 +191,9 @@ Page {
         anchors.fill: parent
 
         PullDownMenu {
+            busy: engine.remoteBusy
+            onActiveChanged: if (active) engine.refreshRemote()
+
             MenuItem {
                 text: settings.listView ? qsTr("Switch to grid view") : qsTr("Switch to list view")
                 onClicked: settings.listView = !settings.listView
@@ -216,6 +219,35 @@ Page {
                 text: qsTr("New…")
                 onClicked: pageStack.push(Qt.resolvedUrl("../components/NewFilesDialog.qml"), {path: getCurrentDir()})
             }
+
+            MenuItem {
+                visible: engine.remoteConfigured
+                enabled: !engine.remoteBusy
+                text: engine.remoteBusy ? qsTr("Please wait…")
+                      : engine.remoteMounted ? qsTr("Disconnect %1").arg(engine.remoteName)
+                      : qsTr("Connect %1").arg(engine.remoteName)
+                onClicked: {
+                    if (engine.remoteMounted) {
+                        if (getCurrentDir().indexOf(engine.remoteMountPoint) === 0)
+                            flm.folder = StandardPaths.home
+                        engine.remoteUnmount()
+                    } else {
+                        engine.remoteMount()
+                    }
+                }
+            }
+
+            MenuItem {
+                visible: engine.remoteConfigured && engine.remoteMounted && getCurrentDir().indexOf(engine.remoteMountPoint) !== 0
+                text: qsTr("Open %1").arg(engine.remoteName)
+                onClicked: flm.folder = engine.remoteMountPoint
+            }
+        }
+
+        Connections {
+            target: engine
+            onRemoteMountFinished: if (mounted) flm.folder = engine.remoteMountPoint
+            onRemoteError: pageStack.push(Qt.resolvedUrl("../components/ErrorDialog.qml"), {error: message})
         }
 
         PageHeader {

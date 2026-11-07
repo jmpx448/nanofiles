@@ -1,0 +1,40 @@
+#!/bin/sh
+# nanofiles-sshfs info|status|mount|umount
+# Mounts one SFTP location (sshfs) described in ~/.config/nanofiles/sshfs.conf:
+#   NAME="LibreELEC"
+#   HOST="192.168.50.185"          # several hosts = tried in order
+#   REMOTE_USER="root"
+#   REMOTE_PATH="/var/media"
+#   KEY="/home/defaultuser/.ssh/id_ed25519_libreelec"
+#   MOUNTPOINT="/home/defaultuser/Network/LibreELEC"
+CONF="${XDG_CONFIG_HOME:-$HOME/.config}/nanofiles/sshfs.conf"
+[ -r "$CONF" ] || { echo "Asetustiedosto puuttuu: $CONF" >&2; exit 2; }
+NAME= HOST= REMOTE_USER=root REMOTE_PATH=/ KEY= MOUNTPOINT= PORT=22
+. "$CONF"
+[ -n "$NAME" ] && [ -n "$HOST" ] && [ -n "$KEY" ] && [ -n "$MOUNTPOINT" ] || { echo "Asetustiedosto on puutteellinen: $CONF" >&2; exit 2; }
+
+is_mounted() { awk -v m="$MOUNTPOINT" '$2 == m { f = 1 } END { exit !f }' /proc/mounts; }
+
+case "$1" in
+    info)   printf "%s\n%s\n" "$NAME" "$MOUNTPOINT" ;;
+    status) is_mounted ;;
+    mount)
+        is_mounted && exit 0
+        mkdir -p "$MOUNTPOINT" || exit 1
+        err=""
+        for h in $HOST; do
+            if out=$(sshfs "$REMOTE_USER@$h:$REMOTE_PATH" "$MOUNTPOINT" -p "$PORT" \
+                    -o IdentityFile="$KEY",IdentitiesOnly=yes,BatchMode=yes,StrictHostKeyChecking=yes \
+                    -o ConnectTimeout=8,ServerAliveInterval=15,ServerAliveCountMax=3,reconnect,idmap=user 2>&1); then
+                exit 0
+            fi
+            err="$err$h: $out
+"
+        done
+        printf "Yhteys kohteeseen %s epäonnistui.\n%s" "$NAME" "$err" >&2
+        exit 1 ;;
+    umount)
+        is_mounted || exit 0
+        fusermount3 -u "$MOUNTPOINT" 2>/dev/null || fusermount3 -uz "$MOUNTPOINT" ;;
+    *)  echo "käyttö: $0 info|status|mount|umount" >&2; exit 2 ;;
+esac

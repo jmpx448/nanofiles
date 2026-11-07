@@ -1,6 +1,9 @@
 #include "fileengine.h"
 #include <unistd.h>
 #include <sys/types.h>
+#include <QFile>
+
+static const char *REMOTE_HELPER = "/usr/bin/nanofiles-sshfs";
 
 FileEngine::FileEngine(QObject *parent) :
     QObject(parent)
@@ -12,6 +15,87 @@ FileEngine::FileEngine(QObject *parent) :
     fileList = new FileList();
     fileProcess = new FileProcess();
     clipboard = new Clipboard();
+
+    refreshRemote();
+}
+
+static bool isMountPoint(const QString &path)
+{
+    QFile mounts(QStringLiteral("/proc/mounts"));
+    if (path.isEmpty() || !mounts.open(QIODevice::ReadOnly))
+        return false;
+    const QList<QByteArray> lines = mounts.readAll().split('\n');
+    for (const QByteArray &line : lines) {
+        const QList<QByteArray> f = line.split(' ');
+        if (f.size() > 1 && QString::fromLocal8Bit(f.at(1)).replace(QStringLiteral("\\040"), QStringLiteral(" ")) == path)
+            return true;
+    }
+    return false;
+}
+
+FileEngine::~FileEngine()
+{
+    // Disconnect when the app closes: an idle sshfs mount keeps waking the phone.
+    if (isMountPoint(_remoteMountPoint))
+        QProcess::execute(QString::fromLatin1(REMOTE_HELPER), QStringList() << QStringLiteral("umount"));
+}
+
+void FileEngine::refreshRemote()
+{
+    if (_remoteName.isEmpty()) {
+        QProcess info;
+        info.start(QString::fromLatin1(REMOTE_HELPER), QStringList() << QStringLiteral("info"));
+        if (info.waitForFinished(3000) && info.exitStatus() == QProcess::NormalExit && info.exitCode() == 0) {
+            const QStringList lines = QString::fromUtf8(info.readAllStandardOutput()).split(QLatin1Char('\n'));
+            if (lines.size() >= 2 && !lines.at(0).isEmpty() && lines.at(1).startsWith(QLatin1Char('/'))) {
+                _remoteName = lines.at(0);
+                _remoteMountPoint = lines.at(1);
+            }
+        }
+    }
+    _remoteMounted = isMountPoint(_remoteMountPoint);
+    emit remoteStateChanged();
+}
+
+void FileEngine::remoteMount()
+{
+    runRemote(QStringLiteral("mount"));
+}
+
+void FileEngine::remoteUnmount()
+{
+    runRemote(QStringLiteral("umount"));
+}
+
+void FileEngine::runRemote(const QString &command)
+{
+    if (_remoteProcess || !remoteConfigured())
+        return;
+    _remoteProcess = new QProcess(this);
+    _remoteProcess->setProcessChannelMode(QProcess::MergedChannels);
+    connect(_remoteProcess, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+            this, [this, command](int exitCode, QProcess::ExitStatus status) {
+        const QString output = QString::fromUtf8(_remoteProcess->readAll()).trimmed();
+        _remoteProcess->deleteLater();
+        _remoteProcess = nullptr;
+        refreshRemote();
+        if (status != QProcess::NormalExit || exitCode != 0)
+            emit remoteError(output.isEmpty() ? QStringLiteral("%1 %2: exit %3").arg(_remoteName, command).arg(exitCode) : output);
+        else if (command == QLatin1String("mount"))
+            emit remoteMountFinished(_remoteMounted);
+    });
+    // finished() is not emitted when the helper cannot be started at all
+    connect(_remoteProcess, &QProcess::errorOccurred, this, [this](QProcess::ProcessError error) {
+        if (error == QProcess::FailedToStart && _remoteProcess) {
+            const QString msg = _remoteProcess->errorString();
+            _remoteProcess->deleteLater();
+            _remoteProcess = nullptr;
+            refreshRemote();
+            emit remoteError(msg);
+        }
+    });
+    emit remoteStateChanged();
+    _remoteProcess->start(QString::fromLatin1(REMOTE_HELPER), QStringList() << command);
 }
 
 void FileEngine::performFileOperation(const QString &fileOperation,

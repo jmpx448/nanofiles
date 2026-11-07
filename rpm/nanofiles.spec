@@ -6,7 +6,7 @@ Name:       nanofiles
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    nanofiles
 Version:    1.4.4
-Release:    3.noroot
+Release:    4.noroot
 Group:      Qt/Qt
 License:    GPLv3
 URL:        http://verdanditeam.com/
@@ -14,6 +14,7 @@ Source0:    %{name}-%{version}.tar.bz2
 Source100:  nanofiles.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   nemo-qml-plugin-thumbnailer-qt5
+# fuse-sshfs (Chum) is optional: needed only for the remote location menu item
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -42,6 +43,7 @@ desktop-file-install --delete-original       \
 %files
 %defattr(-,root,root,-)
 %{_bindir}/%{name}
+%attr(755,root,root) %{_bindir}/nanofiles-sshfs
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png

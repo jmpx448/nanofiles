@@ -45,7 +45,8 @@ TRANSLATIONS += translations/nanofiles.ts \
                 translations/nanofiles-it.ts \
                 translations/nanofiles-nl.ts \
                 translations/nanofiles-sv.ts \
-                translations/nanofiles-zh_CN.ts
+                translations/nanofiles-zh_CN.ts \
+                translations/nanofiles-fi.ts
 
 HEADERS += \
     src/fileprocess.h \
@@ -55,3 +56,7 @@ HEADERS += \
     src/clipboard.h \
     src/util.h \
     src/worker.h
+
+remotehelper.files = scripts/nanofiles-sshfs
+remotehelper.path = /usr/bin
+INSTALLS += remotehelper

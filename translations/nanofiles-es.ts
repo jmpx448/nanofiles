@@ -165,6 +165,22 @@
         <source>Size: %1 Modified: %2</source>
         <translation>Tamaño: %1 Modificado: %2</translation>
     </message>
+    <message>
+        <source>Please wait…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NewFilesDialog</name>
