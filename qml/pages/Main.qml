@@ -353,14 +353,22 @@ Page {
 
                                 Image {
                                     id: listIcon
-                                    sourceSize.width: String(source).indexOf("image://nemoThumbnail/") === 0 ? width : 0
-                                    sourceSize.height: String(source).indexOf("image://nemoThumbnail/") === 0 ? height : 0
                                     width: parent.height
                                     height: parent.height
-                                    source: fileIsDir ? "image://theme/icon-m-file-folder" : getFileIconByMimeType(filePath, fileSize)
+                                    property string iconSource: fileIsDir ? "image://theme/icon-m-file-folder" : getFileIconByMimeType(filePath, fileSize)
+                                    property bool isThumb: iconSource.indexOf("image://nemoThumbnail/") === 0
+                                    source: isThumb ? "" : iconSource
                                     fillMode: Image.PreserveAspectFit
                                     asynchronous: true
                                     anchors.verticalCenter: parent.verticalCenter
+                                    Thumbnail {
+                                        anchors.fill: parent
+                                        visible: parent.isThumb
+                                        source: parent.isThumb ? "file://" + filePath : ""
+                                        sourceSize.width: width
+                                        sourceSize.height: height
+                                        fillMode: Thumbnail.PreserveAspectFit
+                                    }
                                 }
 
                                 Column {
@@ -455,13 +463,21 @@ Page {
 
                             Image {
                                 id: gridicon
-                                sourceSize.width: String(source).indexOf("image://nemoThumbnail/") === 0 ? width : 0
-                                sourceSize.height: String(source).indexOf("image://nemoThumbnail/") === 0 ? height : 0
                                 width: parent.width
                                 height: parent.height/2
-                                source: fileIsDir ? "image://theme/icon-m-file-folder" : getFileIconByMimeType(filePath, fileSize)
+                                property string iconSource: fileIsDir ? "image://theme/icon-m-file-folder" : getFileIconByMimeType(filePath, fileSize)
+                                property bool isThumb: iconSource.indexOf("image://nemoThumbnail/") === 0
+                                source: isThumb ? "" : iconSource
                                 fillMode: Image.PreserveAspectFit
                                 asynchronous: true
+                                Thumbnail {
+                                    anchors.fill: parent
+                                    visible: parent.isThumb
+                                    source: parent.isThumb ? "file://" + filePath : ""
+                                    sourceSize.width: width
+                                    sourceSize.height: height
+                                    fillMode: Thumbnail.PreserveAspectFit
+                                }
                             }
 
                             Label {
