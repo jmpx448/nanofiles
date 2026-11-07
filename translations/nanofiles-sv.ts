@@ -208,14 +208,6 @@
         <translation>Ändra namn</translation>
     </message>
     <message>
-        <source>Restart in user mode</source>
-        <translation type="unfinished">Starta om i användarläge</translation>
-    </message>
-    <message>
-        <source>Restart in root mode</source>
-        <translation type="unfinished">Starta om i root-läge</translation>
-    </message>
-    <message>
         <source>About Nanofiles</source>
         <translation type="unfinished"></translation>
     </message>

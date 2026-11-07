@@ -208,14 +208,6 @@
         <translation>Cambia nome</translation>
     </message>
     <message>
-        <source>Restart in user mode</source>
-        <translation>Riavvia in modalità utente</translation>
-    </message>
-    <message>
-        <source>Restart in root mode</source>
-        <translation>Riavvia in modalità root</translation>
-    </message>
-    <message>
         <source>About Nanofiles</source>
         <translation>Info su Nanofiles</translation>
     </message>

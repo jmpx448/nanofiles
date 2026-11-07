@@ -208,14 +208,6 @@
         <translation>Naam wijzigen</translation>
     </message>
     <message>
-        <source>Restart in user mode</source>
-        <translation>Opnieuw opstarten in gebruikersmodus</translation>
-    </message>
-    <message>
-        <source>Restart in root mode</source>
-        <translation>Opnieuw opstarten in rootmodus</translation>
-    </message>
-    <message>
         <source>About Nanofiles</source>
         <translation>Over Nanofiles</translation>
     </message>

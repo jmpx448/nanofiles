@@ -6,13 +6,14 @@ Name:       nanofiles
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    nanofiles
 Version:    1.4.4
-Release:    1.noroot
+Release:    2.noroot
 Group:      Qt/Qt
 License:    GPLv3
 URL:        http://verdanditeam.com/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  nanofiles.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   nemo-qml-plugin-thumbnailer-qt5
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)

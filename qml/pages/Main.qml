@@ -5,6 +5,7 @@ import QtQml.Models 2.2
 import Qt.labs.folderlistmodel 2.1
 import SortFilterProxyModel 0.2
 import org.nemomobile.configuration 1.0
+import Nemo.Thumbnailer 1.0
 import "../components"
 import "../js/moment.min.js" as Moment
 
@@ -24,10 +25,9 @@ Page {
             icon = "image://theme/icon-m-file-audio";
             break;
         case "image":
-            if (Math.round(fileSize/1024) < 1024)
-                icon = filePath
-            else
-                icon = "image://theme/icon-m-file-image";
+            // fileSize 0 = FileInfo page: show the full image.
+            // Otherwise use the system thumbnailer (cached, scaled) for any size.
+            icon = fileSize === 0 ? filePath : "image://nemoThumbnail/" + filePath
             break;
         case "video":
             icon = "image://theme/icon-m-file-video";
@@ -353,6 +353,8 @@ Page {
 
                                 Image {
                                     id: listIcon
+                                    sourceSize.width: String(source).indexOf("image://nemoThumbnail/") === 0 ? width : 0
+                                    sourceSize.height: String(source).indexOf("image://nemoThumbnail/") === 0 ? height : 0
                                     width: parent.height
                                     height: parent.height
                                     source: fileIsDir ? "image://theme/icon-m-file-folder" : getFileIconByMimeType(filePath, fileSize)
@@ -453,6 +455,8 @@ Page {
 
                             Image {
                                 id: gridicon
+                                sourceSize.width: String(source).indexOf("image://nemoThumbnail/") === 0 ? width : 0
+                                sourceSize.height: String(source).indexOf("image://nemoThumbnail/") === 0 ? height : 0
                                 width: parent.width
                                 height: parent.height/2
                                 source: fileIsDir ? "image://theme/icon-m-file-folder" : getFileIconByMimeType(filePath, fileSize)
