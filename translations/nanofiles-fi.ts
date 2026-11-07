@@ -248,6 +248,10 @@
         <translation>Palauta oletussijainnit</translation>
     </message>
     <message>
+        <source>Resetting entries</source>
+        <translation>Palautetaan oletussijainnit</translation>
+    </message>
+    <message>
         <source>Move Up</source>
         <translation>Siirrä ylös</translation>
     </message>
