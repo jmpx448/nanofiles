@@ -6,7 +6,7 @@ Name:       nanofiles
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    nanofiles
 Version:    1.4.4
-Release:    4.noroot
+Release:    5.noroot
 Group:      Qt/Qt
 License:    GPLv3
 URL:        http://verdanditeam.com/

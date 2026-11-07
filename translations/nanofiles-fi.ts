@@ -5,42 +5,42 @@
     <name>About</name>
     <message>
         <source>Nanofiles Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Nanofilesin käännökset</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <source>Made by Michał Szczepaniak. Based on fileman.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekijä Michał Szczepaniak. Perustuu fileman-ohjelmaan.</translation>
     </message>
     <message>
         <source>Contributors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Avustajat:</translation>
     </message>
     <message>
         <source>Rudi Timmermans (rudi1970)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rudi Timmermans (rudi1970)</translation>
     </message>
     <message>
         <source>Licensed under GPLv3</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisenssi: GPLv3</translation>
     </message>
     <message>
         <source>Links</source>
-        <translation type="unfinished"></translation>
+        <translation>Linkit</translation>
     </message>
     <message>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation>Lahjoita</translation>
     </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>Nanofiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Nanofiles</translation>
     </message>
 </context>
 <context>
@@ -58,81 +58,81 @@
     <name>FileInfo</name>
     <message>
         <source>File information</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedoston tiedot</translation>
     </message>
     <message>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>Jaa</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Koko:</translation>
     </message>
     <message>
         <source>Modified:</source>
-        <translation type="unfinished"></translation>
+        <translation>Muokattu:</translation>
     </message>
     <message>
         <source>Accessed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Avattu:</translation>
     </message>
 </context>
 <context>
     <name>FileProcess</name>
     <message>
         <source>Installing...</source>
-        <translation type="unfinished"></translation>
+        <translation>Asennetaan…</translation>
     </message>
     <message>
         <source>Opening file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Avataan tiedostoa…</translation>
     </message>
     <message>
         <source>Installing packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Asennetaan paketteja</translation>
     </message>
     <message>
         <source>Downloading packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladataan paketteja</translation>
     </message>
     <message>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Asennettu</translation>
     </message>
     <message>
         <source>Nothing was done</source>
-        <translation type="unfinished"></translation>
+        <translation>Mitään ei tehty</translation>
     </message>
     <message>
         <source>Installation failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Asennus epäonnistui</translation>
     </message>
     <message>
         <source>Installation was started</source>
-        <translation type="unfinished"></translation>
+        <translation>Asennus aloitettiin</translation>
     </message>
     <message>
         <source>Installation couldn&apos;t be started</source>
-        <translation type="unfinished"></translation>
+        <translation>Asennusta ei voitu aloittaa</translation>
     </message>
     <message>
         <source>File opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedosto avattu</translation>
     </message>
     <message>
         <source>Suitable application was not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Sopivaa sovellusta ei löytynyt</translation>
     </message>
     <message>
         <source>File couldn&apos;t be opened</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedostoa ei voitu avata</translation>
     </message>
 </context>
 <context>
     <name>FileRenameDialog</name>
     <message>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä uudelleen</translation>
     </message>
 </context>
 <context>
@@ -155,174 +155,254 @@
     </message>
     <message>
         <source>Switch to grid view</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda ruudukkonäkymään</translation>
     </message>
     <message>
         <source>Switch to list view</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda luettelonäkymään</translation>
     </message>
     <message>
         <source>Add to places</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää sijainteihin</translation>
     </message>
     <message>
         <source>Hide hidden files</source>
-        <translation type="unfinished"></translation>
+        <translation>Piilota piilotiedostot</translation>
     </message>
     <message>
         <source>Show hidden files</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä piilotiedostot</translation>
     </message>
     <message>
         <source>New…</source>
-        <translation type="unfinished"></translation>
+        <translation>Uusi…</translation>
     </message>
     <message>
         <source>Size: %1 Modified: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Koko: %1 Muokattu: %2</translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation>Koti</translation>
+    </message>
+    <message>
+        <source>Documents</source>
+        <translation>Asiakirjat</translation>
+    </message>
+    <message>
+        <source>Downloads</source>
+        <translation>Lataukset</translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation>Musiikki</translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation>Kuvat</translation>
+    </message>
+    <message>
+        <source>Videos</source>
+        <translation>Videot</translation>
+    </message>
+    <message>
+        <source>Android storage</source>
+        <translation>Android-tallennustila</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Juuri</translation>
+    </message>
+    <message>
+        <source>SD card</source>
+        <translation>Muistikortti</translation>
     </message>
 </context>
 <context>
     <name>NewFilesDialog</name>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyyppi</translation>
     </message>
     <message>
         <source>Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansio</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiedosto</translation>
     </message>
     <message>
         <source>Name…</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimi…</translation>
     </message>
 </context>
 <context>
     <name>Places</name>
     <message>
         <source>About Nanofiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoja Nanofilesista</translation>
     </message>
     <message>
         <source>Reset entries</source>
-        <translation type="unfinished"></translation>
+        <translation>Palauta oletussijainnit</translation>
     </message>
     <message>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirrä ylös</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Siirrä alas</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nimeä uudelleen</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista</translation>
     </message>
     <message>
         <source>Change name</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda nimi</translation>
+    </message>
+    <message>
+        <source>Places</source>
+        <translation>Sijainnit</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation>Koti</translation>
+    </message>
+    <message>
+        <source>Documents</source>
+        <translation>Asiakirjat</translation>
+    </message>
+    <message>
+        <source>Downloads</source>
+        <translation>Lataukset</translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation>Musiikki</translation>
+    </message>
+    <message>
+        <source>Pictures</source>
+        <translation>Kuvat</translation>
+    </message>
+    <message>
+        <source>Videos</source>
+        <translation>Videot</translation>
+    </message>
+    <message>
+        <source>Android storage</source>
+        <translation>Android-tallennustila</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Juuri</translation>
+    </message>
+    <message>
+        <source>SD card</source>
+        <translation>Muistikortti</translation>
     </message>
 </context>
 <context>
     <name>ShareFilesPage</name>
     <message>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>Jaa</translation>
     </message>
     <message>
         <source>No sharing accounts available!</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakotilejä ei ole käytettävissä!</translation>
     </message>
 </context>
 <context>
     <name>TranslationsPage</name>
     <message>
         <source>POEditor translations</source>
-        <translation type="unfinished"></translation>
+        <translation>POEditor-käännökset</translation>
     </message>
     <message>
         <source>Nanofiles translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Nanofilesin kääntäjät</translation>
     </message>
 </context>
 <context>
     <name>Worker</name>
     <message>
         <source>Copying files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopioidaan tiedostoja…</translation>
     </message>
     <message>
         <source>Creating directories...</source>
-        <translation type="unfinished"></translation>
+        <translation>Luodaan kansioita…</translation>
     </message>
     <message>
         <source>Directories couldn&apos;t be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansioita ei voitu luoda.</translation>
     </message>
     <message>
         <source>Copying files (%1 of %2)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopioidaan tiedostoja (%1/%2)…</translation>
     </message>
     <message>
         <source>All files were copied successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki tiedostot kopioitiin.</translation>
     </message>
     <message>
         <source>All files couldn&apos;t be copied successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikkia tiedostoja ei voitu kopioida.</translation>
     </message>
     <message>
         <source>Deleting old files (%1 of %2)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan vanhoja tiedostoja (%1/%2)…</translation>
     </message>
     <message>
         <source>Deleting old directories...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan vanhoja kansioita…</translation>
     </message>
     <message>
         <source>All of the files were cut and pasted successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki tiedostot siirrettiin.</translation>
     </message>
     <message>
         <source>All of the files couldn&apos;t be cut and pasted successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikkia tiedostoja ei voitu siirtää.</translation>
     </message>
     <message>
         <source>Failed to copy all files, deleting copied files (%1 of %2)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikkia tiedostoja ei voitu kopioida, poistetaan kopioidut tiedostot (%1/%2)…</translation>
     </message>
     <message>
         <source>Failed to copy all files, deleting created directories...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikkia tiedostoja ei voitu kopioida, poistetaan luodut kansiot…</translation>
     </message>
     <message>
         <source>Deleting files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan tiedostoja…</translation>
     </message>
     <message>
         <source>Deleting files (%1 of %2)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan tiedostoja (%1/%2)…</translation>
     </message>
     <message>
         <source>Deleting directories...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan kansioita…</translation>
     </message>
     <message>
         <source>All files were deleted successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki tiedostot poistettiin.</translation>
     </message>
     <message>
         <source>All files couldn&apos;t be deleted successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikkia tiedostoja ei voitu poistaa.</translation>
     </message>
 </context>
 </TS>
