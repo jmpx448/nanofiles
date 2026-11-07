@@ -2,7 +2,7 @@
 # nanofiles-sshfs info|status|mount|umount
 # Mounts one SFTP location (sshfs) described in ~/.config/nanofiles/sshfs.conf:
 #   NAME="LibreELEC"
-#   HOST="192.168.50.185"          # several hosts = tried in order
+#   HOST="192.168.1.10"            # several hosts = tried in order
 #   REMOTE_USER="root"
 #   REMOTE_PATH="/var/media"
 #   KEY="/home/defaultuser/.ssh/id_ed25519_libreelec"
