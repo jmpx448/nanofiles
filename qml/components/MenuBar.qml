@@ -24,78 +24,48 @@ Item {
     id: tabPageHeader
 
     property var view: null
-    property variant iconArray: []
-    property variant functionsArray: []
-    property int visibleHeight: flickable.contentY + height
+    // [{func, icon, label, shortLabel}], see Main.qml
+    property var actions: []
+    property bool showLabels: false
 
     anchors { bottom: parent.bottom; left: parent.left; right: parent.right }
     height: Theme.itemSizeLarge
 
-    SilicaFlickable {
-        id: flickable
+    Row {
         anchors.fill: parent
-        contentHeight: parent.height
 
-        Row {
-            anchors.fill: parent
+        Repeater {
+            id: sectionRepeater
+            model: actions
+            delegate: BackgroundItem {
+                width: tabPageHeader.width / sectionRepeater.count
+                height: tabPageHeader.height
 
-            Repeater {
-                id: sectionRepeater
-                model: iconArray
-                delegate: BackgroundItem {
-                    width: tabPageHeader.width / sectionRepeater.count
-                    height: tabPageHeader.height
+                Column {
+                    anchors.centerIn: parent
+                    width: parent.width
+                    spacing: Theme.paddingSmall / 2
 
                     Image {
-                        id: icon
+                        anchors.horizontalCenter: parent.horizontalCenter
                         height: Theme.iconSizeSmall * 1.4
                         width: Theme.iconSizeSmall * 1.4
-                        anchors.centerIn: parent
-                        source: modelData
+                        source: modelData.icon
                     }
 
-                   Label {
-                        anchors {
-                            top: parent.top; topMargin: Theme.paddingSmall
-                            left: icon.right; leftMargin: -Theme.paddingMedium
-                        }
-                        visible: true
-                        font.pixelSize: Theme.fontSizeSmall
-                        color: Theme.highlightColor
-
-                        text: ""
+                    Label {
+                        visible: showLabels
+                        width: parent.width - Theme.paddingSmall
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        truncationMode: TruncationMode.Fade
+                        font.pixelSize: Theme.fontSizeTiny
+                        color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                        text: modelData.shortLabel
                     }
-
-                    Loader {
-                        anchors.fill: parent
-                        sourceComponent: undefined
-                        Component {
-                            id: busyIndicator
-
-                            Rectangle {
-                                anchors.fill: parent
-                                color: "black"
-                                opacity: 0
-
-                                Behavior on opacity { NumberAnimation { duration: 250 } }
-
-                                BusyIndicator {
-                                    opacity: 1
-                                    anchors.centerIn: parent
-                                    running: true
-                                    height: tabPageHeader.height - Theme.paddingLarge
-                                    width: height
-                                }
-
-                                Component.onCompleted: opacity = 0.75
-                            }
-                        }
-
-                    }
-
-                    onClicked: view.handleButton(functionsArray[index])
-
                 }
+
+                onClicked: view.handleButton(modelData.func)
             }
         }
     }

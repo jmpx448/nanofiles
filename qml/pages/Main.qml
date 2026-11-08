@@ -155,6 +155,44 @@ Page {
         }
     }
 
+    // One list drives all three action styles: icons, icons with labels
+    // and the pull-up menu. Built from the current state, so icons, labels
+    // and functions always stay in step.
+    property bool hasClipboard: clipboard.clipboardFileCount > 0
+    property var actions: {
+        var cutOp = clipboard.fileOperation === "cut"
+        var a = [{ func: "select",
+                   icon: selectMode ? "image://theme/icon-m-close" : "image://theme/icon-m-certificates",
+                   label: selectMode ? qsTr("Cancel selection") : qsTr("Clear clipboard"),
+                   shortLabel: selectMode ? qsTr("Cancel") : qsTr("Clear") }]
+        if (hasClipboard) {
+            // "copy" and "cut" both paste when the clipboard has files
+            a.push({ func: cutOp ? "cut" : "copy",
+                     icon: cutOp ? "image://theme/icon-m-redirect" : "image://theme/icon-m-clipboard",
+                     label: cutOp ? qsTr("Move here") : qsTr("Paste here"),
+                     shortLabel: cutOp ? qsTr("Move") : qsTr("Paste") })
+        }
+        if (selectMode) {
+            if (!hasClipboard) {
+                a.push({ func: "copy", icon: "image://theme/icon-m-clipboard",
+                         label: qsTr("Copy"), shortLabel: qsTr("Copy") })
+                a.push({ func: "cut", icon: "qrc:///images/icon-m-scissors.svg",
+                         label: qsTr("Cut"), shortLabel: qsTr("Cut") })
+            }
+            a.push({ func: "delete", icon: "image://theme/icon-m-delete",
+                     label: qsTr("Delete"), shortLabel: qsTr("Delete") })
+            a.push({ func: "tar", icon: "image://theme/icon-m-file-archive-folder",
+                     label: qsTr("Compress (tar.gz)"), shortLabel: qsTr("Compress") })
+            a.push({ func: "rename", icon: "image://theme/icon-m-edit",
+                     label: qsTr("Rename"), shortLabel: qsTr("Rename", "short") })
+            if (clipboard.selectedFileCount <= 1)
+                a.push({ func: "info", icon: "image://theme/icon-m-about",
+                         label: qsTr("Details"), shortLabel: qsTr("Details") })
+        }
+        return a
+    }
+    property bool actionsAvailable: selectMode || hasClipboard
+
     function getCurrentDir() {
         return flm.folder.toString().replace("file://", "")
     }
@@ -181,6 +219,8 @@ Page {
                                                    {name: qsTr("SD card"), path: engine.getSdCardMountPath()},
                                                ])
         property bool listView: false
+        // 0 = icons, 1 = icons with labels, 2 = pull-up menu
+        property int actionStyle: 0
     }
 
 
@@ -242,6 +282,14 @@ Page {
                 text: qsTr("Open %1").arg(engine.remoteName)
                 onClicked: flm.folder = engine.remoteMountPoint
             }
+        }
+
+        // In the same flickable as the PullDownMenu, so it gets the drag
+        // the same way (the file views are nested inside this one).
+        ActionsPushUpMenu {
+            visible: settings.actionStyle === 2 && actionsAvailable
+            actions: page.actions
+            view: page
         }
 
         Connections {
@@ -576,46 +624,14 @@ Page {
         MenuBar {
             id: menuBar
             view: page
-            height: Theme.itemSizeMedium
+            height: showLabels ? Theme.itemSizeLarge : Theme.itemSizeMedium
             anchors.bottomMargin: hidden ? -height : 0
-            iconArray: [ selectMode ? "image://theme/icon-m-close" : "image://theme/icon-m-certificates", "image://theme/icon-m-clipboard", "image://theme/icon-m-delete", "qrc:///images/icon-m-scissors.svg", "image://theme/icon-m-file-archive-folder", "image://theme/icon-m-edit", "image://theme/icon-m-about"]
-            functionsArray: [ "select", "copy", "delete", "cut", "tar", "rename", "info" ]
+            actions: page.actions
+            showLabels: settings.actionStyle === 1
+            // Not just moved off-screen: pulling up the menu would bring it into view
+            visible: settings.actionStyle !== 2
 
-            property bool hidden: !selectMode && !clipboard.clipboardFileCount
-
-            Connections {
-                target: clipboard
-
-                onFileOperationChanged: {
-                    var tempIconArray = menuBar.iconArray
-                    if (clipboard.getFileOperation() === "cut") {
-                        if (tempIconArray[3] === "image://theme/icon-m-redirect") {
-                            tempIconArray.splice(3,1)
-                        }
-                        menuBar.iconArray = tempIconArray
-                    } else {
-                        if (tempIconArray[3] !== "image://theme/icon-m-redirect") {
-                            tempIconArray.splice(3, 0, "image://theme/icon-m-redirect")
-                        }
-                        menuBar.iconArray = tempIconArray
-                    }
-                }
-
-                onSelectedFileCountChanged: {
-                    var tempIconArray = menuBar.iconArray
-                    if (clipboard.getSelectedFileCount() > 1) {
-                        if (tempIconArray[tempIconArray.length-1] === "image://theme/icon-m-about") {
-                            tempIconArray.pop()
-                        }
-                        menuBar.iconArray = tempIconArray
-                    } else {
-                        if (tempIconArray[tempIconArray.length-1] !== "image://theme/icon-m-about") {
-                            tempIconArray.push("image://theme/icon-m-about")
-                        }
-                        menuBar.iconArray = tempIconArray
-                    }
-                }
-            }
+            property bool hidden: settings.actionStyle === 2 || !actionsAvailable
 
             Behavior on anchors.bottomMargin {
                 PropertyAnimation {

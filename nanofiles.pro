@@ -28,6 +28,8 @@ DISTFILES += qml/nanofiles.qml \
     qml/components/NewFilesDialog.qml \
     qml/components/FileRenameDialog.qml \
     qml/components/MenuBar.qml \
+    qml/components/ActionsPushUpMenu.qml \
+    qml/pages/Settings.qml \
     rpm/nanofiles.spec \
     translations/*.ts \
     nanofiles.desktop

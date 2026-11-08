@@ -217,6 +217,71 @@
         <source>SD card</source>
         <translation>Muistikortti</translation>
     </message>
+    <message>
+        <source>Cancel selection</source>
+        <translation>Peru valinta</translation>
+    </message>
+    <message>
+        <source>Clear clipboard</source>
+        <translation>Tyhjennä leikepöytä</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Peru</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Tyhjennä</translation>
+    </message>
+    <message>
+        <source>Move here</source>
+        <translation>Siirrä tähän</translation>
+    </message>
+    <message>
+        <source>Paste here</source>
+        <translation>Liitä tähän</translation>
+    </message>
+    <message>
+        <source>Move</source>
+        <translation>Siirrä</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>Liitä</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>Kopioi</translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation>Leikkaa</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Poista</translation>
+    </message>
+    <message>
+        <source>Compress (tar.gz)</source>
+        <translation>Pakkaa (tar.gz)</translation>
+    </message>
+    <message>
+        <source>Compress</source>
+        <translation>Pakkaa</translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <translation>Nimeä uudelleen</translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <comment>short</comment>
+        <translation>Nimeä</translation>
+    </message>
+    <message>
+        <source>Details</source>
+        <translation>Tiedot</translation>
+    </message>
 </context>
 <context>
     <name>NewFilesDialog</name>
@@ -314,6 +379,49 @@
     <message>
         <source>SD card</source>
         <translation>Muistikortti</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Asetukset</translation>
+    </message>
+</context>
+<context>
+    <name>Settings</name>
+    <message>
+        <source>Settings</source>
+        <translation>Asetukset</translation>
+    </message>
+    <message>
+        <source>File actions</source>
+        <translation>Tiedostotoiminnot</translation>
+    </message>
+    <message>
+        <source>How actions for selected files are shown</source>
+        <translation>Miten valittujen tiedostojen toiminnot näytetään</translation>
+    </message>
+    <message>
+        <source>Icons</source>
+        <translation>Kuvakkeet</translation>
+    </message>
+    <message>
+        <source>Icons with labels</source>
+        <translation>Kuvakkeet ja tekstit</translation>
+    </message>
+    <message>
+        <source>Pull-up menu</source>
+        <translation>Vetovalikko alhaalla</translation>
+    </message>
+    <message>
+        <source>Pull up at the end of the file list to open the menu. In long folders, scroll to the end first.</source>
+        <translation>Valikko avautuu vetämällä ylöspäin tiedostolistan lopussa. Pitkissä kansioissa vieritä ensin loppuun.</translation>
+    </message>
+    <message>
+        <source>List view</source>
+        <translation>Listanäkymä</translation>
+    </message>
+    <message>
+        <source>Show files as a list instead of a grid</source>
+        <translation>Näytä tiedostot listana ruudukon sijaan</translation>
     </message>
 </context>
 <context>

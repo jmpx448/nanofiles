@@ -36,6 +36,8 @@ built and tested on Sailfish OS 5.x (aarch64). Changes compared to upstream:
   the host key must already be in `~/.ssh/known_hosts`. Requires `fuse-sshfs` (e.g. from Chum).
 - **Finnish translation.**
 - **"Reset entries" can be undone** (remorse timer) instead of wiping custom places immediately.
+- **File actions setting** (Places → Settings): icons, icons with labels, or a text pull-up menu.
+  The action list follows the state (selection vs. paste), so icons and functions always match.
 - SortFilterProxyModel submodule patched to build with Qt 5.6
   ([jmpx448/SortFilterProxyModel](https://github.com/jmpx448/SortFilterProxyModel), branch `qt56`).
 

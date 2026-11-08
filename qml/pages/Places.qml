@@ -37,6 +37,11 @@ Page {
             }
 
             MenuItem {
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
+            }
+
+            MenuItem {
                 text: qsTr("Reset entries")
                 onClicked: Remorse.popupAction(placesPage, qsTr("Resetting entries"),
                                                 function() { settings.places = defaultPlaces })
